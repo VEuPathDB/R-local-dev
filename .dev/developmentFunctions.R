@@ -27,19 +27,19 @@ loadDevPackages <- function(packagesToDevelop = veupathdbPackages) {
   if ('veupathUtils' %in% packagesToDevelop){
     devtools::load_all('veupathUtils') 
   } else {
-    remotes::install_github('VEuPathDB/veupathUtils')
+    remotes::install_github('VEuPathDB/veupathUtils', upgrade_dependencies=F)
   }
 
   if ('plot.data' %in% packagesToDevelop) {
     devtools::load_all('plot.data')
   } else {
-    remotes::install_github('VEuPathDB/plot.data')
+    remotes::install_github('VEuPathDB/plot.data', upgrade_dependencies=F)
   }
 
   if ('microbiomeComputations' %in% packagesToDevelop) {
     devtools::load_all('microbiomeComputations')
   } else {
-    remotes::install_github('VEuPathDB/microbiomeComputations')
+    remotes::install_github('VEuPathDB/microbiomeComputations', upgrade_dependencies=F)
   }
 
   # Print some useful info
