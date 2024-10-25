@@ -6,7 +6,7 @@ veupathdbPackages <- c('plot.data','veupathUtils','microbiomeComputations')
 # packagesToDevelop must be a subset of ['plot.data','veupathUtils','microbiomeComputations']
 # All other VEuPathDB packages not in packagesToDevelop will be installed from github
 # Example use: loadDevPackages('plot.data')
-loadDevPackages <- function(packagesToDevelop = veupathdbPackages) {
+loadDevPackages <- function(packagesToDevelop = veupathdbPackages, installAllPackages = FALSE) {
 
   if (!all(packagesToDevelop %in% veupathdbPackages)) {
     stop(paste('packagesToDevelop must be a subset of ', veupathdbPackages))
@@ -23,7 +23,7 @@ loadDevPackages <- function(packagesToDevelop = veupathdbPackages) {
     load_dot_env(file="plot.data/.dev/.env")
   }
 
-  # Load the packages (in order). If we're not developing a package, install it
+  # Load the packages (in order). If we're not developing a package, install it only if necessary or if installAllPackages=TRUE
   if ('veupathUtils' %in% packagesToDevelop){
     devtools::load_all('veupathUtils') 
   } else {
@@ -32,13 +32,14 @@ loadDevPackages <- function(packagesToDevelop = veupathdbPackages) {
 
   if ('plot.data' %in% packagesToDevelop) {
     devtools::load_all('plot.data')
-  } else {
+  } else if (installAllPackages) {
     remotes::install_github('VEuPathDB/plot.data', upgrade_dependencies=F)
   }
 
+
   if ('microbiomeComputations' %in% packagesToDevelop) {
     devtools::load_all('microbiomeComputations')
-  } else {
+  } else if (installAllPackages) {
     remotes::install_github('VEuPathDB/microbiomeComputations', upgrade_dependencies=F)
   }
 
@@ -48,11 +49,11 @@ loadDevPackages <- function(packagesToDevelop = veupathdbPackages) {
     , crayon::bold(paste(packagesToDevelop, collapse='\n\t'))
     , "\n\nAny other VEuPathDB packages were installed using the latest version on github. \n \n"
     , "After making any changes to the code, reload the package using\n\t"
-    , "load_all(", packagesToDevelop[1], ")\n\n"
+    , "load_all('", packagesToDevelop[1], "')\n\n"
     , "Test changes by running a specific test file with\n\t"
     , "testFile('", packagesToDevelop[1], "', 'testFileName')\n\n"
     , "or by running all tests with\n\t"
-    , "devtools::test(", packagesToDevelop[1], ")\n"
+    , "devtools::test('", packagesToDevelop[1], "')\n"
   )
 
   cat(crayon::cyan(successMessage))
