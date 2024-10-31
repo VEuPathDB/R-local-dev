@@ -1,4 +1,4 @@
-FROM rocker/r-ver:4.3.2
+FROM rocker/rstudio:4.3.2
 # To run rstudio, change above to FROM rocker/rstudio:4.3.2
 
 ## Set a default user. Available via runtime flag `--user rserve`
