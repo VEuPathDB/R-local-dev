@@ -56,7 +56,7 @@ build:
 
 .PHONY: start-shell
 start-shell:
-	@docker run -p 8081:8888 --rm -v $(pwd):/home/dev -it $(local_name):$(tag) $(run_cmd)
+	@docker run -p 8081:8888 --rm -v $(pwd):/home/dev -it $(local_name):$(tag) R
 
 .PHONY: stop
 stop:
