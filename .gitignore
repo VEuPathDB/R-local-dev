@@ -3,6 +3,10 @@
 .vscode/
 .devcontainer/
 
+# RStudio
+.config
+.local
+
 # Repositories
 Rserve/
 veupathUtils/

@@ -28,9 +28,9 @@ Type 'q()' to quit R.
 ```
 &nbsp;&nbsp;&nbsp;&nbsp; Alternatively, to start RStudio run 
 ```
-docker run -d -p 8787:8787 -e PASSWORD=password -v $(pwd):/home/rstudio/Documents rdev:dev
+docker run -d -p 8787:8787 -e PASSWORD=password -v $PWD:/home/rstudio rdev:dev
 ```
-&nbsp;&nbsp;&nbsp;&nbsp; This will start an RStudio session. If the browser does not open automatically, navigate to `http://localhost:8787/`. 
+&nbsp;&nbsp;&nbsp;&nbsp; This will start an RStudio session. If the browser does not open automatically, navigate to `http://localhost:8787/`. If you already have RStudio running locally on your machine, you can map a different port, e.g. `-p 8888:8787` and access using `http://localhost:8888/`.
 
 3. Now we're ready to load our package. The function `loadDevPackages` will both load the package of interest and install VEuPath dependencies if they exist. If we want to work on veupathUtils, for example, run
 ```
